@@ -32,17 +32,22 @@ class MainMenu:
                 select = int(input("Which resource details you want to find?"))
             except ValueError:
                 print("An exception occurred")
+# Exit Programme
         if select == 5:
             print("\n | Thank You! 🙏 |")
+# Books selection
         elif select == 1:
             Books.intro()
             menu1()
+# Magazines selection
         elif select == 2:
             Magazines.intro1()
             menu2()
+# DVD selection
         elif select == 3:
             educational_DVD1.intro2()
             menu3()
+# CD selection
         elif select == 4:
             lecture_CDs1.intro3()
             menu4()
@@ -61,6 +66,7 @@ class Books:
         self.rental_price_per_day = rental_price_per_day
         self.number_of_copies = number_of_copies
 
+# Displaying the menu
     @staticmethod
     def intro():
         print("********************************")
@@ -80,6 +86,7 @@ class book_list1(Books):
     def __init__(self):
         self.book_L = []
         self.append1()
+# Add the books early
 
     def append1(self):
 
@@ -93,11 +100,13 @@ class book_list1(Books):
                        rental_price_per_day=12.50, number_of_copies=0)
         self.book_L.append(book_3)
 
+# Display all list function
     def all_list(self):
         for l in self.book_L:
             print(
                 f"ISBN Number:{l.isbn_number}, Title:{l.title}, Format:{l.format}, Subject:{l.subject}, Rental price per day:{l.rental_price_per_day}, Number of copies:{l.number_of_copies} ")
 
+# Adding books function
     def add(self):
         isbn_number1 = input("• ISBN Number: ").strip().upper()
         title1 = input("• Title of the book: ").strip().capitalize()
@@ -105,10 +114,15 @@ class book_list1(Books):
         subject1 = input("• Subject Name: ").strip().capitalize()
         rental_price_per_day1 = float(input("• Rental price per day: "))
         number_of_copies1 = int(input("• Number of Copies: "))
+
+# create an instance of the Books class with the user inputs
         books1 = Books(isbn_number=isbn_number1, title=title1, format=format1, subject=subject1,
                        rental_price_per_day=rental_price_per_day1, number_of_copies=number_of_copies1)
+
+# append the Books instance to the book_L list
         self.book_L.append(books1)
 
+# Remove books function
     def remove(self):
         delete = input("Enter the ISBN number: ").upper()
         y = [l for l in self.book_L if l.isbn_number == delete]
@@ -116,6 +130,7 @@ class book_list1(Books):
             self.book_L.remove(l)
         self.all_list()
 
+# Lending books function
     def lend(self):
         isbmn1 = input("• Enter the ISBN number: ").upper()
         copy = int(input("• Enter number of copies need to lend: "))
@@ -124,6 +139,7 @@ class book_list1(Books):
             l.number_of_copies -= copy
         self.all_list()
 
+# Getting books function
     def give(self):
         isbmn2 = input("• Enter the ISBN number: ").upper()
         copy = int(input("• Enter number of copies need to Update: "))
@@ -132,18 +148,21 @@ class book_list1(Books):
             z.number_of_copies += copy
         self.all_list()
 
+# Display not available books
     def zero(self):
         y = [l for l in self.book_L if l.number_of_copies == 0]
         for z in y:
             print(
                 f"ISBN Number:{z.isbn_number}, Title:{z.title}, Format:{z.format}, Subject:{z.subject}, Rental price per day:{z.rental_price_per_day}, Number of copies:{z.number_of_copies} ")
 
+# Display available books
     def available(self):
         y = [l for l in self.book_L if l.number_of_copies > 0]
         for z in y:
             print(
                 f"ISBN Number:{z.isbn_number}, Title:{z.title}, Format:{z.format}, Subject:{z.subject}, Rental price per day:{z.rental_price_per_day}, Number of copies:{z.number_of_copies} ")
 
+# Continue function
     def continue_p(self):
         print("*****************************************")
         choice = input("-> Do yo Need to Continue (Y/N)").upper()
@@ -153,7 +172,7 @@ class book_list1(Books):
         else:
             quit()
 
-
+# Books main menu function
 def menu1():
     try:
         select2 = int(input("• Select what  you want to do?"))
@@ -168,7 +187,7 @@ def menu1():
 
     if select2 == 1:
         book_list1().all_list()
-        print("*****************************************")
+
         book_list1().continue_p()
 
     elif select2 == 2:
@@ -222,6 +241,7 @@ class Magazines:
         self.rental_price = rental_price
         self.number_of_copies = number_of_copies
 
+# Displaying the menu
     @staticmethod
     def intro1():
         print("********************************")
@@ -242,6 +262,7 @@ class magazine_list1:
         self.magazine_L = []
         self.append2()
 
+# Add the magazine early
     def append2(self):
         magazine_1 = Magazines(magazine_number="01", title='History of Cricket', color_or_black_and_white_print='color',
                                subject='Sports',
@@ -252,11 +273,13 @@ class magazine_list1:
                                rental_price=3.00, number_of_copies=21)
         self.magazine_L.append(magazine_2)
 
+# Display all list function
     def all_list1(self):
         for lm in self.magazine_L:
             print(
                 f"Magazine Number:{lm.magazine_number}, Title:{lm.title}, Print:{lm.color_or_black_and_white_print}, Subject:{lm.subject}, Rental price per day:{lm.rental_price}, Number of copies:{lm.number_of_copies} ")
 
+# Adding magazine function
     def add1(self):
         magazine_number = input("• Magazine Number: ").strip().upper()
         title = input("• Title of the Magazine: ").strip().capitalize()
@@ -266,16 +289,17 @@ class magazine_list1:
         rental_price = float(input("• Rental price per day: "))
         number_of_copies = int(input("• Number of Copies: "))
 
-        # create an instance of the Magazines class with the user inputs
+# create an instance of the Magazines class with the user inputs
         magazine = Magazines(magazine_number=magazine_number, title=title,
                              color_or_black_and_white_print=color_or_black_and_white_print,
                              subject=subject, rental_price=rental_price, number_of_copies=number_of_copies)
 
-        # append the magazine instance to the magazine_L list
+# append the magazine instance to the magazine_L list
         self.magazine_L.append(magazine)
 
-    # create an instance of the magazine_list1 class and call its methods
 
+
+# Remove magazine function
     def remove1(self):
         delete1 = input("• Enter the Magazine number: ").upper()
         y1 = [lm for lm in self.magazine_L if lm.magazine_number == delete1]
@@ -283,6 +307,7 @@ class magazine_list1:
             self.magazine_L.remove(lm)
         self.all_list1()
 
+# Lending magazine function
     def lend1(self):
         Maga1 = input("• Enter the Magazine number: ").upper()
         copy1 = int(input("• Enter number of copies need to lend: "))
@@ -291,6 +316,7 @@ class magazine_list1:
             lm.number_of_copies -= copy1
         self.all_list1()
 
+# Getting magazine function
     def give1(self):
         Maga = input("• Enter the Magazine number: ").upper()
         copy1 = int(input("• Enter number of copies need to Update: "))
@@ -299,28 +325,31 @@ class magazine_list1:
             lm.number_of_copies += copy1
         self.all_list1()
 
+# Display not available magazine
     def zero1(self):
         y1 = [lm for lm in self.magazine_L if lm.number_of_copies == 0]
         for lm in y1:
             print(
                 f"Magazine Number:{lm.magazine_number}, Title:{lm.title}, Print:{lm.color_or_black_and_white_print}, Subject:{lm.subject}, Rental price per day:{lm.rental_price}, Number of copies:{lm.number_of_copies} ")
 
+# Display available magazine
     def available1(self):
         y1 = [lm for lm in self.magazine_L if lm.number_of_copies > 0]
         for lm in y1:
             print(
                 f"Magazine Number:{lm.magazine_number}, Title:{lm.title}, Print:{lm.color_or_black_and_white_print}, Subject:{lm.subject}, Rental price per day:{lm.rental_price}, Number of copies:{lm.number_of_copies} ")
 
+# Continue function
     def continue_p1(self):
         print("*****************************************")
         choicem = input("-> Do yo Need to Continue (Y/N)").upper()
         if choicem == "Y":
             Magazines.intro1()
-            menu1()
+            menu2()
         else:
             quit()
 
-
+# Magazine main menu function
 def menu2():
     try:
         select2 = int(input("• Select what  you want to do?"))
@@ -335,7 +364,6 @@ def menu2():
 
     if select2 == 1:
         magazine_list1().all_list1()
-        print("*****************************************")
         magazine_list1().continue_p1()
 
     elif select2 == 2:
@@ -389,6 +417,7 @@ class educational_DVD:
         self.rental_price_per_day = rental_price_per_day
         self.number_of_copies = number_of_copies
 
+# Displaying the DVD
     @staticmethod
     def intro2():
         print("********************************")
@@ -409,6 +438,7 @@ class educational_DVD1(educational_DVD):
         self.educational_DVD_L = []
         self.append2()
 
+# Add the DVD early
     def append2(self):
 
         educational_1 = educational_DVD(dvd_number="10", title='Birth of the Solar System', subject='Astronomy',
@@ -418,22 +448,29 @@ class educational_DVD1(educational_DVD):
                                         rental_price_per_day=1.00, number_of_copies=0)
         self.educational_DVD_L.append(educational_2)
 
+# Display all list function
     def all_list2(self):
         for ld in self.educational_DVD_L:
             print(
                 f"DVD Number:{ld.dvd_number}, Title:{ld.title}, Subject:{ld.subject}, Rental price per day:{ld.rental_price_per_day}, Number of copies:{ld.number_of_copies} ")
 
+# Adding DVD function
     def add2(self):
         dvd_number1 = input("• DVD Number: ").strip().upper()
         title2 = input("• Title of the DVD: ").strip().capitalize()
         subject2 = input("• Subject Name: ").strip().capitalize()
         rental_price_per_day2 = float(input("• Rental price per day: "))
         number_of_copies2 = int(input("• Number of Copies: "))
+
+# create an instance of the educational_DVD class with the user inputs
         educational_DVD1 = educational_DVD(dvd_number=dvd_number1, title=title2, subject=subject2,
                                            rental_price_per_day=rental_price_per_day2,
                                            number_of_copies=number_of_copies2)
+
+# append the educational_DVD instance to the educational_DVD_L list
         self.educational_DVD_L.append(educational_DVD1)
 
+# Remove DVD function
     def remove2(self):
         delete2 = input("• Enter the Magazine number: ").upper()
         y2 = [ld for ld in self.educational_DVD_L if ld.dvd_number == delete2]
@@ -441,6 +478,7 @@ class educational_DVD1(educational_DVD):
             self.educational_DVD_L.remove(ld)
         self.all_list2()
 
+# Lending DVD function
     def lend2(self):
         Dvd1 = input("• Enter the DVD number: ").upper()
         copy2 = int(input("• Enter number of copies need to lend: "))
@@ -449,6 +487,7 @@ class educational_DVD1(educational_DVD):
             ld.number_of_copies -= copy2
         self.all_list2()
 
+# Getting DVD function
     def give2(self):
         Dvd1 = input("• Enter the DVD number: ").upper()
         copy2 = int(input("• Enter number of copies need to Update: "))
@@ -457,28 +496,31 @@ class educational_DVD1(educational_DVD):
             ld.number_of_copies += copy2
         self.all_list2()
 
+# Display not available DVD
     def zero2(self):
         y2 = [ld for ld in self.educational_DVD_L if ld.number_of_copies == 0]
         for ld in y2:
             print(
                 f"DVD Number:{ld.dvd_number}, Title:{ld.title}, Subject:{ld.subject}, Rental price per day:{ld.rental_price_per_day}, Number of copies:{ld.number_of_copies} ")
 
+# Display available DVD
     def available2(self):
         y2 = [ld for ld in self.educational_DVD_L if ld.number_of_copies > 0]
         for ld in y2:
             print(
                 f"DVD Number:{ld.dvd_number}, Title:{ld.title}, Subject:{ld.subject}, Rental price per day:{ld.rental_price_per_day}, Number of copies:{ld.number_of_copies} ")
 
+# Continue function
     def continue_p2(self):
         print("*****************************************")
         choicem = input("-> Do yo Need to Continue (Y/N)").upper()
         if choicem == "Y":
             educational_DVD.intro2()
-            menu1()
+            menu3()
         else:
             quit()
 
-
+# DVD main menu function
 def menu3():
     try:
         select2 = int(input("• Select what  you want to do?"))
@@ -493,7 +535,6 @@ def menu3():
 
     if select2 == 1:
         educational_DVD1().all_list2()
-        print("*****************************************")
         educational_DVD1().continue_p2()
 
     elif select2 == 2:
@@ -547,6 +588,7 @@ class lecture_CDs:
         self.rental_price = rental_price
         self.number_of_copies = number_of_copies
 
+# Displaying the CD
     @staticmethod
     def intro3():
         print("********************************")
@@ -567,6 +609,7 @@ class lecture_CDs1(lecture_CDs):
         self.lecture_CD_L = []
         self.append3()
 
+# Add the CD early
     def append3(self):
 
         lecture_1 = lecture_CDs(cd_number="21", title='Basics of Western Music', subject='Music',
@@ -576,21 +619,28 @@ class lecture_CDs1(lecture_CDs):
                                 rental_price=2.00, number_of_copies=3)
         self.lecture_CD_L.append(lecture_2)
 
+# Display all list function
     def all_list3(self):
         for lc in self.lecture_CD_L:
             print(
                 f"Lecture CD Number:{lc.cd_number}, Title:{lc.title}, Subject:{lc.subject}, Rental price per day:{lc.rental_price}, Number of copies:{lc.number_of_copies} ")
 
+# Adding CD function
     def add3(self):
         cd_number1 = input("• Lecture CD Number: ").strip().upper()
         title3 = input("• Title of the Lecture CD: ").strip().capitalize()
         subject3 = input("• Subject Name: ").strip().capitalize()
         rental_price_per_day3 = float(input("• Rental price per day: "))
         number_of_copies3 = int(input("• Number of Copies: "))
+
+# create an instance of the lecture_CDs class with the user inputs
         lecture_CD1 = lecture_CDs(cd_number=cd_number1, title=title3, subject=subject3,
                                   rental_price=rental_price_per_day3, number_of_copies=number_of_copies3)
+        
+# append the lecture_CDs instance to the lecture_CD_L list
         self.lecture_CD_L.append(lecture_CD1)
 
+# Remove CD function
     def remove3(self):
         delete3 = input("• Enter the Magazine number: ").upper()
         y3 = [lc for lc in self.lecture_CD_L if lc.cd_number == delete3]
@@ -598,6 +648,7 @@ class lecture_CDs1(lecture_CDs):
             self.lecture_CD_L.remove(lc)
         self.all_list3()
 
+# Lending CD function
     def lend3(self):
         Cd1 = input("• Enter the Lecture CD number: ").upper()
         copy3 = int(input("• Enter number of copies need to lend: "))
@@ -606,6 +657,7 @@ class lecture_CDs1(lecture_CDs):
             lc.number_of_copies -= copy3
         self.all_list3()
 
+# Getting CD function
     def give3(self):
         Cd1 = input("• Enter the DVD number: ").upper()
         copy3 = int(input("• Enter number of copies need to Update: "))
@@ -614,28 +666,31 @@ class lecture_CDs1(lecture_CDs):
             lc.number_of_copies += copy3
         self.all_list3()
 
+# Display not available CD
     def zero3(self):
         y3 = [lc for lc in self.lecture_CD_L if lc.number_of_copies == 0]
         for lc in y3:
             print(
                 f"Lecture CD Number:{lc.cd_number}, Title:{lc.title}, Subject:{lc.subject}, Rental price per day:{lc.rental_price}, Number of copies:{lc.number_of_copies} ")
 
+# Display available CD
     def available3(self):
         y2 = [lc for lc in self.lecture_CD_L if lc.number_of_copies > 0]
         for lc in y2:
             print(
                 f"Lecture CD Number:{lc.cd_number}, Title:{lc.title}, Subject:{lc.subject}, Rental price per day:{lc.rental_price}, Number of copies:{lc.number_of_copies}")
 
+# Continue function
     def continue_p3(self):
         print("*****************************************")
         choicem = input("-> Do yo Need to Continue (Y/N)").upper()
         if choicem == "Y":
             educational_DVD.intro2()
-            menu1()
+            menu4()
         else:
             print("\n | Thank You! 🙏 |")
 
-
+# CD main menu function
 def menu4():
     try:
         select2 = int(input("• Select what  you want to do?"))
@@ -650,7 +705,6 @@ def menu4():
 
     if select2 == 1:
         lecture_CDs1().all_list3()
-        print("*****************************************")
         lecture_CDs1().continue_p3()
 
     elif select2 == 2:
@@ -696,5 +750,5 @@ def menu4():
 # Initializing the programme.
 # ---------------------------
 
-MainMenu.input1()
+
 MainMenu.menue()
