@@ -347,7 +347,7 @@ class magazine_list1:
         choicem = input("-> Do yo Need to Continue (Y/N)").upper()
         if choicem == "Y":
             Magazines.intro1()
-            menu1()
+            menu2()
         else:
             quit()
 
@@ -514,7 +514,7 @@ class educational_DVD1(educational_DVD):
         choicem = input("-> Do yo Need to Continue (Y/N)").upper()
         if choicem == "Y":
             educational_DVD.intro2()
-            menu1()
+            menu3()
         else:
             quit()
 
@@ -682,7 +682,7 @@ class lecture_CDs1(lecture_CDs):
         choicem = input("-> Do yo Need to Continue (Y/N)").upper()
         if choicem == "Y":
             educational_DVD.intro2()
-            menu1()
+            menu4()
         else:
             print("\n | Thank You! 🙏 |")
 
